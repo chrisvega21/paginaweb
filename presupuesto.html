@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferretería | Home</title>
+    <link rel="stylesheet" href="css/presupuesto.css">
+</head>
+<body>
+    <!----------------------------------------------------------------------------- Encabezado ------------------------------------------------------------------------------->
+    <table class="encabezado">
+        <tr>
+            <td style="text-align: left;" class="titulo">
+                Ferretería Tuerquitas
+            </td>
+            <td style="text-align:center;">
+                tuercasss@gmail.com
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: right;">
+                <a href="https://www.facebook.com/FERRETERIALATUERCADEMARIANOACOSTA">
+                    <img src="img/redes/facebook.png" width="30" alt="">
+                </a>
+                <a href="https://www.instagram.com/ferreteria.la.tuerquita/">
+                    <img src="img/redes/instagram.png" width="30" alt="">
+                </a>
+                <a href="https://wa.me/593995153222">
+                    <img src="img/redes/whatsapp.png" width="30" alt="">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: right;">
+                <ul class="menu">
+                    <a href="index.html"><li>Home</li></a>
+                    <a href="nosotros.html"><li>Nosotros</li></a>
+                    <a href="clientes.html"><li>Clientes</li></a>
+                    <a href="productos.html"><li>Productos</li></a>
+                    <a href="contactos.html"><li>Contacto</li></a>
+                    <a href="presupuesto.html"><li>Presupuesto</li></a>
+                    <a href="login.html"><li>Login</li></a>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <!-------------------------------------------------------------------- Fin del Encabezado -------------------------------------------------------------------------->
+    <table>
+        <tr>
+            <td style="text-align: left; padding: 10px;" class="titulo">
+                Inmobiliaria
+            </td>
+            <td style="text-align:right;">
+                www.certus.edu.pe
+            </td>
+        </tr>
+    </table>
+    <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <div class="presupuesto">
+        <table>
+            <tr>
+                <td>
+                    <img width="100%" src="img/inmobiliaria.png" alt="">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center; color: darkred; padding: 10px; font-size: 26px; font-weight: bold;">
+                    PRESENTACIÓN
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    PRESUPUESTO
+                </td>
+            </tr>
+            <tr>
+                <td>Largo (m)</td>
+                <td>
+                    <input type="number" id="txtlargo">
+                </td>
+            </tr>
+            <tr>
+                <td>Ancho (m)</td>
+                <td>
+                    <input type="number" id="txtancho">
+                </td>
+            </tr>
+            <tr>
+                <td>Area (m2)</td>
+                <td>
+                    <input type="number" disabled id="txtarea">
+                </td>
+            </tr>
+            <tr>
+                <td>Distrito</td>
+                <td>
+                    <select name="" id="txtdis" onchange="mostrar();">
+                        <option value="1">Lima Cercado</option>
+                        <option value="2">La Victoria</option>
+                        <option value="3">Lince</option>
+                        <option value="4">Jesus Maria</option>
+                        <option value="5">Pueblo Libre</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Precio (m2)</td>
+                <td>
+                    <input type="number" disabled id="txtpre">
+                </td>
+            </tr>
+            <tr>
+                <td>Valor S/</td>
+                <td>
+                    <input type="number" disabled id="txtvalS">
+                </td>
+            </tr>
+            <tr>
+                <td>Valor US</td>
+                <td>
+                    <input type="number" disabled id="txtvalU">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick="calcular();">Calcular</button>
+                </td>
+                <td>
+                    <button onclick="limpiar();">Limpiar</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    function mostrar(){
+        let xv = document.getElementById("txtdis").value;
+        let xselec = 0; // Inicializando la variable xpre
+        switch (xv){
+            case "1":
+                xselec = 450.00;
+                break;
+            case "2":
+                xselec = 550.00;
+                break;
+            case "3":
+                xselec = 650.00;
+                break;
+            case "4":
+                xselec = 670.00;
+                break;
+            case "5":
+                xselec = 750.00;
+                break;
+            }
+            document.getElementById("txtpre").value = xselec;
+        }
+
+        function calcular(){
+        let largo = parseInt(document.getElementById("txtlargo").value);
+        let ancho = parseInt(document.getElementById("txtancho").value);
+        let precio = parseFloat(document.getElementById("txtpre").value);
+        let tipocambio = 3.5;
+
+        let area = (largo * ancho);
+
+        let valorS = (area * precio);
+        let valorU = ((area * precio)/tipocambio);
+
+        document.getElementById("txtvalS").value = valorS.toFixed(2);
+        document.getElementById("txtvalU").value = valorU.toFixed(2);
+        document.getElementById("txtarea").value = area;
+    }
+
+    function limpiar(){
+        document.getElementById("txtlargo").value = "";
+        document.getElementById("txtancho").value = "";
+        document.getElementById("txtarea").value = "";
+        document.getElementById("txtdis").value = "";
+        document.getElementById("txtpre").value = "";
+        document.getElementById("txtvalS").value = "";
+        document.getElementById("txtvalU").value = "";
+    }
+</script>
+</html>
